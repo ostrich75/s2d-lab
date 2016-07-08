@@ -1,0 +1,71 @@
+<unattend xmlns="urn:schemas-microsoft-com:unattend">
+  <settings pass="windowsPE">
+    <component name="Microsoft-Windows-Setup" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" processorArchitecture="AMD64">
+      <UpgradeData>
+   <Upgrade>false</Upgrade>
+      </UpgradeData>
+      <UserData>
+        <AcceptEula>true</AcceptEula>
+        <FullName>Microsoft</FullName>
+        <Organization>Microsoft</Organization>
+              <ProductKey>
+          <WillShowUI>OnError</WillShowUI>
+          <Key>%productkey%</Key>
+        </ProductKey>
+      </UserData>
+      <Restart>Restart</Restart>
+    </component>
+   <component name="Microsoft-Windows-International-Core-WinPE" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" processorArchitecture="AMD64">
+     <SetupUILanguage>
+        <UILanguage>en-us</UILanguage>
+      <WillShowUI>OnError</WillShowUI>
+     </SetupUILanguage>
+     <UILanguage>%locale%</UILanguage>
+     <SystemLocale>%locale%</SystemLocale>
+     <UserLocale>%locale%</UserLocale>
+     <InputLocale>0409:00000409</InputLocale>
+   </component>
+  </settings>
+      <settings pass="specialize">
+       <component name="Microsoft-Windows-Shell-Setup" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" processorArchitecture="AMD64">
+         <ComputerName>%computername%</ComputerName>
+       </component>
+     <component name="Microsoft-Windows-TerminalServices-RDP-WinStationExtensions" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" processorArchitecture="AMD64">
+            <UserAuthentication>0</UserAuthentication>
+     </component>
+    <component name="Microsoft-Windows-Deployment" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" processorArchitecture="AMD64">
+            <RunSynchronous>
+                        <RunSynchronousCommand>
+                                    <Order>1</Order>
+                                    <Path>cmd /c net user administrator /active:yes</Path>
+                                    <Description>RS1</Description>
+                                    <WillReboot>Never</WillReboot>
+                        </RunSynchronousCommand>
+            </RunSynchronous>
+    </component>
+   </settings>
+  <settings pass="oobeSystem">
+    <component name="Microsoft-Windows-Shell-Setup" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" processorArchitecture="AMD64">
+      <UserAccounts>
+       <AdministratorPassword>
+        <Value>%adminpassword%</Value>
+        <PlainText>true</PlainText>
+       </AdministratorPassword>
+      </UserAccounts>
+      <Display>
+        <HorizontalResolution>1024</HorizontalResolution>
+        <VerticalResolution>768</VerticalResolution>
+        <ColorDepth>16</ColorDepth>
+        <RefreshRate>60</RefreshRate>
+       </Display>
+      <FirstLogonCommands>
+        <SynchronousCommand>
+          <Order>1</Order>
+          <CommandLine>cmd /c netsh advfirewall set allprofiles state off</CommandLine>
+          <Description>Runonce01</Description>
+        </SynchronousCommand>
+      </FirstLogonCommands>
+      <OOBE><SkipMachineOOBE>true</SkipMachineOOBE></OOBE>
+    </component>
+  </settings>
+</unattend>
