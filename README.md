@@ -4,6 +4,9 @@
 - First of all, you need to have machine with Windows Server 2016 TP5 installed. If you want to deploy Hyper-Converged S2D (default option), you need to make sure your hardware support nested virtualization.
 - You need to have Domain Controller which attached to a virtual switch (private switch is recommneded if you don't have 10Gb NIC).
 - You also need to have DHCP server available in the network of the above virtual switch. (You could co-lo DHCP and DC together.)
+- Please also run cmdlet below before you run the deployment script.
+  
+  Set-ExecutionPolicy -ExecutionPolicy Unrestricted
  
 ## S2D-Lab Scripts:
 - S2D-LabSetup.ps1 help you provision a set of domain-joined VMs with roles and features required by Storage Space Direct.
